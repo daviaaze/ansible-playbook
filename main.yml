@@ -1,5 +1,5 @@
 ---
-- hosts: vps, home_server
+- hosts: home_server
   name: Updating packages and installing docker
   strategy: linear
   roles:
@@ -11,45 +11,21 @@
         - docker
 
 - hosts: home_server
-  name: Install Pihole in Home Server
-  strategy: linear
-  roles:
-    - role: pihole
-      tags:
-        - pihole
-
-- hosts: vps, home_server
-  name: Install Traefik in vps and Home server
+  name: Install Home Server's containers
   strategy: free
   roles:
     - role: traefik
       tags:
         - traefik
-
-- hosts: vps
-  name: Install VPS's containers
-  strategy: linear
-  roles:
-    - role: wireguard-server
-      tags:
-        - wireguard-server
-
-- hosts: home_server
-  name: Install Home Server's containers
-  strategy: free
-  roles:
     - role: homepage
       tags:
         - homepage
-    - role: wireguard-client
+    - role: wireguard-server
       tags:
-        - wireguard-client
+        - wireguard-server
     - role: nextcloud
       tags:
         - nextcloud
-    - role: homeassistant
-      tags:
-        - homeassistant
     - role: jellyfin
       tags:
         - jellyfin
@@ -83,6 +59,6 @@
     - role: prometheus
       tags:
         - prometheus
-    - role: scrutiny
+    - role: cloudflare-ddns
       tags:
-        - scrutiny
+        - cloudflare-ddns

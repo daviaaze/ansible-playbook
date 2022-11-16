@@ -13,6 +13,7 @@
         dest: /run/systemd/resolve/resolv.conf
         state: link
         force: true
+        follow: false
     - name: Restart systemd-resolved service
       ansible.builtin.service:
         name: systemd-resolved

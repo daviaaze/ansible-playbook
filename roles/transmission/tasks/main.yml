@@ -16,7 +16,7 @@
       # "TRANSMISSION_WEB_HOME": "/transmissionic/"
     volumes:
       - "{{ docker_dir }}/transmission:/config"
-      - "{{ media_dir }}/torrents:/data/torrents"
+      - "{{ media_dir }}/torrents:/downloads/complete"
     networks:
       - name: docker
     ports:

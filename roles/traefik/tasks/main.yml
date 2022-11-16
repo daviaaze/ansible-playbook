@@ -39,6 +39,7 @@
       "UMASK": "002"
       "TZ": "America/Sao_Paulo"
       "DUCKDNS_TOKEN": "{{ duckdns_token }}"
+      "CF_DNS_API_TOKEN": "{{ cloudflare_token }}"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "{{ docker_dir }}/traefik/traefik.yml:/traefik.yml:ro"
@@ -58,7 +59,7 @@
       traefik.http.routers.traefik.service: api@internal
       traefik.http.routers.traefik.middlewares: auth
       traefik.http.routers.traefik.tls: "true"
-      traefik.http.routers.traefik.tls.certresolver: duckdns
+      traefik.http.routers.traefik.tls.certresolver: cloudflare
       traefik.http.routers.traefik.tls.domains[0].main: "{{ domain_name }}"
       traefik.http.routers.traefik.tls.domains[0].sans: "*.{{ domain_name }}"
 

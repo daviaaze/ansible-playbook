@@ -1,0 +1,14 @@
+- name: Create and run Cloudflare DDNS container
+  community.docker.docker_container:
+    image: "oznu/cloudflare-ddns"
+    name: cloudflare-ddns
+    pull: true
+    restart: true
+    env:
+      "ZONE": "{{ domain }}"
+      "API_KEY": "{{ cloudflare_token }}"
+    networks:
+      - name: docker
+    labels:
+      traefik.enable: "false"
+    restart_policy: unless-stopped

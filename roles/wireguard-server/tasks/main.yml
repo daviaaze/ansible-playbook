@@ -13,9 +13,9 @@
       - net_admin
       - sys_module
     env:
-      WG_HOST: "{{ ansible_host }}"
+      WG_HOST: "{{ domain }}"
       WG_ALLOWED_IPS: "10.8.0.0/24, {{ hostvars.home_server.ansible_facts.default_ipv4.network }}/{{ hostvars.home_server.ansible_facts.default_ipv4.prefix }}"
-      WG_DEFAULT_DNS: "{{ hostvars.home_server.ansible_facts.default_ipv4.address }}"
+      WG_DEFAULT_DNS: "1.1.1.1"
     ports:
       - "51820:51820/udp"
     volumes:

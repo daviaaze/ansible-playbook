@@ -18,12 +18,12 @@ providers:
     endpoint: "unix:///var/run/docker.sock"
     exposedByDefault: true
 certificatesResolvers:
-  duckdns:
+  cloudflare:
     acme:
       email: {{ email }}
       storage: "/acme.json"
       dnsChallenge:
-        provider: duckdns
+        provider: cloudflare
 metrics:
   prometheus:
     addRoutersLabels: true

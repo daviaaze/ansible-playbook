@@ -9,6 +9,7 @@
       "PGID": "1000"
       "UMASK": "002"
       "TZ": "America/Sao_Paulo"
+      "NVIDIA_VISIBLE_DEVICES": "all"
     volumes:
       - "{{ docker_dir }}/jellyfin:/config"
       - "{{ media_dir }}/media:/data/media"
@@ -28,6 +29,7 @@
       # homepage.widget.url: "http://host.docker.internal:8096"
       # homepage.widget.key: ""
     restart_policy: unless-stopped
+    runtime: "nvidia"
 
 - name: Add CNAME entry for jellyfin
   ansible.builtin.import_role:
