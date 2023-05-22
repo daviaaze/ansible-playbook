@@ -45,7 +45,6 @@
       "PGID": "1000"
       "UMASK": "002"
       "TZ": "America/Sao_Paulo"
-      "DUCKDNS_TOKEN": "{{ duckdns_token }}"
       "CF_DNS_API_TOKEN": "{{ cloudflare_token }}"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"

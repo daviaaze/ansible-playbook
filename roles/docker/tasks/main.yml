@@ -57,9 +57,9 @@
       - docker
     append: true
 
-- name: Install Docker Module for Python
-  ansible.builtin.pip:
-    name: docker
+# - name: Install Docker Module for Python
+#   ansible.builtin.pip:
+#     name: docker
 
 - name: Make sure Docker is running and enabled
   ansible.builtin.systemd:
