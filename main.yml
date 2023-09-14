@@ -12,7 +12,6 @@
 
 - hosts: home_server
   name: Install Home Server's containers
-  strategy: free
   roles:
     - role: traefik
       tags:
@@ -20,18 +19,21 @@
     - role: homepage
       tags:
         - homepage
-    - role: wireguard-server
+    - role: wireguard_server
       tags:
-        - wireguard-server
-    - role: nextcloud
-      tags:
-        - nextcloud
+        - wireguard_server
     - role: grafana
       tags:
         - grafana
     - role: prometheus
       tags:
         - prometheus
-    - role: cloudflare-ddns
+    - role: cloudflare_ddns
       tags:
-        - cloudflare-ddns
+        - cloudflare_ddns
+    - role: stremio
+      tags:
+        - stremio
+    - role: rdt_client
+      tags:
+        - rdt_client

@@ -1,0 +1,32 @@
+---
+- name: Create and run stremio container
+  community.docker.docker_container:
+    image: "stremio/server"
+    name: "stremio"
+    pull: true
+    env:
+      "PUID": "1000"
+      "PGID": "1000"
+      "UMASK": "002"
+      "TZ": "America/Sao_Paulo"
+    networks:
+      - name: docker
+    labels:
+      traefik.http.routers.stremio.rule: Host(`stremio.{{ domain_name }}`)
+      traefik.http.routers.stremio.entrypoints: https
+      traefik.http.routers.stremio.tls: "true"
+      traefik.http.services.stremio.loadbalancer.server.port: "11470"
+
+      homepage.name: "Stremio"
+      homepage.group: "Media Management"
+      homepage.href: "http://stremio.{{ domain_name }}"
+      homepage.description: "Requester for Movies"
+      homepage.icon: "stremio.png"
+    restart_policy: unless-stopped
+
+- name: Add CNAME entry for stremio
+  ansible.builtin.import_role:
+    name: pihole
+    tasks_from: add_cname_record.yml
+  vars:
+    pihole_subdomain: stremio

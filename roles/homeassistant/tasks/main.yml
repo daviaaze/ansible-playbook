@@ -5,7 +5,7 @@
     owner: "{{ ansible_user }}"
     state: directory
     group: 101
-    mode: 0775
+    mode: "0775"
 
 - name: Verify if Traefik container (reverse proxy) is running
   community.docker.docker_container_info:
@@ -25,7 +25,7 @@
     create: true
     insertbefore: BOF
     group: 101
-    mode: 0775
+    mode: "0775"
   when: traefik_info.exists and traefik_info.container.State.Status == "running"
 
 - name: Create and run Home Assistant container
@@ -61,4 +61,4 @@
     name: pihole
     tasks_from: add_cname_record.yml
   vars:
-    subdomain: homeassistant
+    pihole_subdomain: homeassistant

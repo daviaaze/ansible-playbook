@@ -5,14 +5,14 @@
     owner: "{{ ansible_user }}"
     state: directory
     group: 101
-    mode: 0775
+    mode: "0775"
 
 - name: Copy the prometheus.yml file
   ansible.builtin.template:
     src: prometheus.yml.j2
     dest: "{{ docker_dir }}/prometheus/prometheus.yml"
     group: 101
-    mode: 0775
+    mode: "0775"
 
 - name: Create and run Prometheus container
   community.docker.docker_container:
@@ -44,4 +44,4 @@
     name: pihole
     tasks_from: add_cname_record.yml
   vars:
-    subdomain: prometheus
+    pihole_subdomain: prometheus

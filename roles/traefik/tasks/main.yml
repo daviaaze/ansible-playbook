@@ -5,7 +5,7 @@
     owner: "{{ ansible_user }}"
     state: directory
     group: 101
-    mode: 0775
+    mode: "0775"
 
 - name: Create the acme.json file
   ansible.builtin.file:
@@ -13,21 +13,21 @@
     state: touch
     owner: "{{ ansible_user }}"
     group: 101
-    mode: 0600
+    mode: "0600"
 
 - name: Copy the providers.yml file
   ansible.builtin.template:
     src: providers.yml.j2
     dest: "{{ docker_dir }}/traefik/providers.yml"
     group: 101
-    mode: 0775
+    mode: "0775"
 
 - name: Copy the traefik.yml file
   ansible.builtin.template:
     src: traefik.yml.j2
     dest: "{{ docker_dir }}/traefik/traefik.yml"
     group: 101
-    mode: 0775
+    mode: "0775"
 
 - name: Verify stats for "docker" network
   community.docker.docker_network_info:
@@ -87,4 +87,4 @@
     name: pihole
     tasks_from: add_cname_record.yml
   vars:
-    subdomain: traefik
+    pihole_subdomain: traefik

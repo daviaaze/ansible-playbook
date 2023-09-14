@@ -33,4 +33,4 @@
     name: pihole
     tasks_from: add_cname_record.yml
   vars:
-    subdomain: vaultwarden
+    pihole_subdomain: vaultwarden

@@ -1,0 +1,38 @@
+---
+- name: Create and run rdt client container
+  community.docker.docker_container:
+    name: rdt-client
+    image: rogerfar/rdtclient
+    pull: true
+    networks:
+      - name: docker
+    env:
+      WG_HOST: "{{ domain }}"
+      WG_ALLOWED_IPS: "10.8.0.0/24"
+      WG_DEFAULT_DNS: "1.1.1.1"
+    ports:
+      - 6500:6500/udp
+    volumes:
+      - "{{ docker_dir }}/rdt-client/download/:/data/downloads"
+      - "{{ docker_dir }}/rdt-client/storage/:/data/db"
+
+    labels:
+      traefik.http.routers.rdt-client.rule: Host(`rdt-client.{{ domain_name }}`)
+      traefik.http.routers.rdt-client.entrypoints: https
+      traefik.http.routers.rdt-client.tls: "true"
+      traefik.http.services.rdt-client.loadbalancer.server.port: "6500"
+      traefik.http.routers.rdt-client.middlewares: auth
+
+      homepage.name: Wireguard Server
+      homepage.group: Main Apps
+      homepage.href: http://rdt-client.{{ domain_name }}
+      homepage.description: Dashboard for Real Debrid
+      homepage.icon: rdt-client.png
+    restart_policy: unless-stopped
+
+- name: Add CNAME entry for rdt-client
+  ansible.builtin.import_role:
+    name: pihole
+    tasks_from: add_cname_record.yml
+  vars:
+    pihole_subdomain: rdt-client

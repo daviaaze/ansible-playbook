@@ -34,4 +34,4 @@
     name: pihole
     tasks_from: add_cname_record.yml
   vars:
-    subdomain: prowlarr
+    pihole_subdomain: prowlarr

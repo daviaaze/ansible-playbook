@@ -42,4 +42,4 @@
     name: pihole
     tasks_from: add_cname_record.yml
   vars:
-    subdomain: transmission
+    pihole_subdomain: transmission

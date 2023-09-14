@@ -36,14 +36,14 @@
     src: custom.list.j2
     dest: "{{ docker_dir }}/pihole/pihole/custom.list"
     group: 101
-    mode: 0775
+    mode: "0775"
 
 - name: Create the 05-pihole-custom-cname.conf file
   ansible.builtin.file:
     state: touch
     dest: "{{ docker_dir }}/pihole/dnsmasq.d/05-pihole-custom-cname.conf"
     group: 101
-    mode: 0775
+    mode: "0775"
   register: cname_file
 
 - name: Create and run Pihole container
@@ -82,4 +82,4 @@
 - name: Add CNAME entry for pihole
   ansible.builtin.import_tasks: add_cname_record.yml
   vars:
-    subdomain: pihole
+    pihole_subdomain: pihole

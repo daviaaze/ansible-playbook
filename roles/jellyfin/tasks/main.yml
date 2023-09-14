@@ -37,4 +37,4 @@
     name: pihole
     tasks_from: add_cname_record.yml
   vars:
-    subdomain: jellyfin
+    pihole_subdomain: jellyfin

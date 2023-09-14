@@ -5,14 +5,14 @@
     owner: "{{ ansible_user }}"
     state: directory
     group: 101
-    mode: 0775
+    mode: '0775'
 
 - name: Copy the grafana.ini file
   ansible.builtin.template:
     src: grafana.ini.j2
     dest: "{{ docker_dir }}/grafana/config/grafana.ini"
     group: 101
-    mode: 0775
+    mode: '0775'
 
 - name: Create and run Grafana container
   community.docker.docker_container:
@@ -50,4 +50,4 @@
     name: pihole
     tasks_from: add_cname_record.yml
   vars:
-    subdomain: grafana
+    pihole_subdomain: grafana

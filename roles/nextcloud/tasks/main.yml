@@ -47,4 +47,4 @@
     name: pihole
     tasks_from: add_cname_record.yml
   vars:
-    subdomain: nextcloud
+    pihole_subdomain: nextcloud

@@ -5,28 +5,28 @@
     owner: "{{ ansible_user }}"
     state: directory
     group: 101
-    mode: 0775
+    mode: "0775"
 
 - name: Copy the docker.yaml file
   ansible.builtin.template:
     src: docker.yaml.j2
     dest: "{{ docker_dir }}/homepage/docker.yaml"
     group: 101
-    mode: 0775
+    mode: "0775"
 
 - name: Copy the services.yaml file
   ansible.builtin.template:
     src: services.yaml.j2
     dest: "{{ docker_dir }}/homepage/services.yaml"
     group: 101
-    mode: 0775
+    mode: "0775"
 
 - name: Copy the bookmarks.yaml file
   ansible.builtin.template:
     src: bookmarks.yaml.j2
     dest: "{{ docker_dir }}/homepage/bookmarks.yaml"
     group: 101
-    mode: 0775
+    mode: "0775"
 
 
 - name: Verify stats for "docker" network
@@ -65,4 +65,4 @@
     name: pihole
     tasks_from: add_cname_record.yml
   vars:
-    subdomain: homepage
+    pihole_subdomain: homepage
