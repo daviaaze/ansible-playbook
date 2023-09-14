@@ -3,7 +3,7 @@
   community.docker.docker_container:
     image: "lscr.io/linuxserver/bazarr:latest"
     name: "bazarr"
-    pull: true
+    pull: "{{ pull_images }}"
     env:
       "PUID": "1000"
       "PGID": "1000"
@@ -25,6 +25,8 @@
       homepage.href: "http://bazarr.{{ domain_name }}"
       homepage.description: "Requester for Subtittles"
       homepage.icon: "bazarr.png"
+      homepage.ping: http://bazarr:6767/
+
       # homepage.widget.type: bazarr
       # homepage.widget.url: "http://bazarr:6767"
       # homepage.widget.key: ""

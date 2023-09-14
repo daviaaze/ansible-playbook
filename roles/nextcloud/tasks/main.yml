@@ -12,12 +12,15 @@
       - "{{ docker_dir }}/mariadb:/config"
     ports:
       - "3306:3306/tcp"
+    labels:
+      traefik.enable: "false"
     restart_policy: unless-stopped
 
 - name: Create and run Nextcloud container
   community.docker.docker_container:
     image: "lscr.io/linuxserver/nextcloud"
     name: "nextcloud"
+    pull: "{{ pull_images }}"
     env:
       "PUID": "1000"
       "PGID": "1000"
@@ -40,6 +43,7 @@
       homepage.href: "http://nextcloud.{{ domain_name }}"
       homepage.description: "Personal Cloud Storage"
       homepage.icon: "nextcloud.png"
+      homepage.ping: http://nextcloud
     restart_policy: unless-stopped
 
 - name: Add CNAME entry for nextcloud

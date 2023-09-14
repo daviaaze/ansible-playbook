@@ -18,7 +18,7 @@
   community.docker.docker_container:
     image: "grafana/grafana-oss:latest"
     name: "grafana"
-    pull: true
+    pull: "{{ pull_images }}"
     user: "0:0"
     restart: true
     env:
@@ -41,6 +41,7 @@
       homepage.group: "Monitoring Tools"
       homepage.href: "http://grafana.{{ domain_name }}"
       homepage.description: "Dashboard-based Observability Tool"
+      homepage.ping: http://grafana:3000
       homepage.icon: "grafana.png"
 
     restart_policy: unless-stopped

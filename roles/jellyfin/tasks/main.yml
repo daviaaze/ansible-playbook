@@ -3,7 +3,7 @@
   community.docker.docker_container:
     image: "linuxserver/jellyfin:latest"
     name: "jellyfin"
-    pull: true
+    pull: "{{ pull_images }}"
     env:
       "PUID": "1000"
       "PGID": "1000"
@@ -26,6 +26,7 @@
       homepage.href: "http://jellyfin.{{ domain_name }}"
       homepage.description: "Unified media server"
       homepage.icon: "jellyfin.png"
+      homepage.ping: http://jellyfin:8096/
       # homepage.widget.type: jellyfin
       # homepage.widget.url: "http://host.docker.internal:8096"
       # homepage.widget.key: ""

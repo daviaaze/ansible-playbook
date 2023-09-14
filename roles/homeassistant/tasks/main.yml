@@ -32,7 +32,7 @@
   community.docker.docker_container:
     image: "lscr.io/linuxserver/homeassistant"
     name: "homeassistant"
-    pull: true
+    pull: "{{ pull_images }}"
     restart: true
     env:
       "PUID": "1000"
@@ -54,6 +54,7 @@
       homepage.href: "http://homeassistant.{{ domain_name }}"
       homepage.description: "Smart Home Control Hub"
       homepage.icon: "home-assistant.png"
+      homepage.ping: http://homeassistant:8123/
     restart_policy: unless-stopped
 
 - name: Add CNAME entry for homeassistant

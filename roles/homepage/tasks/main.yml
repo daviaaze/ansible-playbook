@@ -28,6 +28,19 @@
     group: 101
     mode: "0775"
 
+- name: Copy the settings.yaml file
+  ansible.builtin.template:
+    src: settings.yaml.j2
+    dest: "{{ docker_dir }}/homepage/settings.yaml"
+    group: 101
+    mode: 0775
+
+- name: Copy the widgets.yaml file
+  ansible.builtin.template:
+    src: widgets.yaml.j2
+    dest: "{{ docker_dir }}/homepage/widgets.yaml"
+    group: 101
+    mode: 0775
 
 - name: Verify stats for "docker" network
   community.docker.docker_network_info:
@@ -38,8 +51,7 @@
   community.docker.docker_container:
     image: "ghcr.io/benphelps/homepage:latest"
     name: "homepage"
-    pull: true
-    restart: true
+    pull: "{{ pull_images }}"
     env:
       "PUID": "1000"
       "PGID": "1000"

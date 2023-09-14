@@ -4,12 +4,10 @@ all:
     # basicAuth middleware (used to access traefik's, wireguard-server's
     # and vaultwarden's dashboards). Generate with: htpasswd -n user
     # example format caio:$apr1$uqKQpe59$5wAjFRqzcOpUhUvhHLjp8.
-    auth_credentials:
-    email: # email used in traefik's HTTPS certificate
-    # cloudflare_token: 
-    # token used to verify cloudflare' domain ownership through DNS challenge for CA-signed certificate
-    cloudflare_token: 
-    domain: # subdomain registered on cloudflare to be used
+    email: # email used in traefik's HTTPS certificate 
+    duckdns_token: # token used to verify duckdns' domain ownership through DNS challenge for CA-signed certificate
+    duckdns_domain: # subdomain registered on duckdns to be used
+    pull_images: true # whether or not to force pull the Docker images from registry when launching services
   hosts:
     home_server:
       ansible_user: daviaaze # user to be used by ansible to login via SSH to this host
